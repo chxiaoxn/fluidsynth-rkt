@@ -1,0 +1,53 @@
+* 中文版
+** 簡介
+
+這裏是 midi 合成庫 [[http://www.fluidsynth.org][FluidSynth]] 在 Racket 下的封裝.
+
+** 使用
+
+1. 加載 "fluid.rkt" 文件即可.
+#+begin_src scheme
+(require (file "fluid.rkt"))
+#+end_src
+
+2. 奏出一個音. 以下代碼基本翻譯自 C. 見文檔 [[http://www.fluidsynth.org/api/][FluidSynth]].
+#+begin_src scheme
+(define settings (new-fluid-settings))
+(define synth (new-fluid-synth settings))
+(define drive (new-fluid-audio-driver settings synth))
+
+(define sf-location "your soundfont")
+(define sf (sfload synth sf-location 1))
+(noteon synth 0 60 127)
+#+end_src
+
+** Disclaimer
+1. 並非每個函數都被封裝.
+
+* English Version
+** Introduction
+
+This is a very simple wrapper of the midi synthesiser library [[http://www.fluidsynth.org][FluidSynth]] in Racket.
+
+** Usage:
+
+1. Require the file "fluid.rkt" as
+#+begin_src scheme
+(require (file "fluid.rkt"))
+#+end_src
+
+2. To make a sound. This code is basically verbatim translation of its C version.
+See the documentation  [[http://www.fluidsynth.org/api/][FluidSynth]].
+#+begin_src scheme
+(define settings (new-fluid-settings))
+(define synth (new-fluid-synth settings))
+(define drive (new-fluid-audio-driver settings synth))
+
+(define sf-location "your soundfont")
+(define sf (sfload synth sf-location 1))
+(noteon synth 0 60 127)
+#+end_src
+
+** Disclaimer
+1. Not every function is exposed to Racket.
+
