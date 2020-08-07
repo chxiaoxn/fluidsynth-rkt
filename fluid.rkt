@@ -415,8 +415,13 @@
 
 ;; midi driver
 
+(define (fluid-midi-driver-async-apply thunk)
+  (thunk))
+
 (define handle-midi-event-func-t
-  (_fun _pointer fluid-midi-event-t -> _int))
+  (_fun #:atomic? #t
+        #:async-apply fluid-midi-driver-async-apply
+        _pointer fluid-midi-event-t -> _int))
 
 (define fluid-midi-driver-t
   (_cpointer 'fluid_midi_driver_t))
